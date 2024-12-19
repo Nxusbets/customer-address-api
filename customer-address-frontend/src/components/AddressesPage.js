@@ -75,6 +75,31 @@ const AddressesPage = () => {
     }
   };
 
+  // Función para eliminar una dirección
+  const handleDelete = async (id) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('No estás autenticado. Inicia sesión primero.');
+        return;
+      }
+
+      await axios.delete(`https://automatic-meme-4jqxg49p9grwfqjgw-3000.app.github.dev/addresses/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Enviar el token en el encabezado Authorization
+        },
+      });
+
+      // Filtrar la dirección eliminada del estado
+      setAddresses((prevAddresses) => prevAddresses.filter((address) => address.id !== id));
+      setSuccessMessage('Dirección eliminada correctamente');
+      setError('');
+    } catch (err) {
+      setError('No se pudo eliminar la dirección');
+      setSuccessMessage('');
+    }
+  };
+
   return (
     <div>
       <h2>Direcciones</h2>
@@ -120,6 +145,7 @@ const AddressesPage = () => {
         {addresses.map((address) => (
           <li key={address.id}>
             {address.firstName} {address.lastName} - {address.address}
+            <button onClick={() => handleDelete(address.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
