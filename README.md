@@ -1,23 +1,89 @@
-# API de Direcciones de Clientes NxuS
+**Sistema de Gestión de Direcciones**
 
-## Descripción
+Este proyecto permite a los usuarios gestionar sus direcciones de forma segura y eficiente. Utiliza autenticación JWT y una base de datos SQL para almacenar y proteger los datos.
 
-Este proyecto es una **API** que permite gestionar direcciones de clientes de una empresa. Con esta API, puedes:
+Requisitos previos
 
-- **Agregar** nuevas direcciones
-- **Ver** todas las direcciones
-- **Actualizar** direcciones existentes
-- **Eliminar** direcciones
+Node.js: https://nodejs.org/
 
-Además, la API usa **JWT** (JSON Web Token) para la autenticación, lo que garantiza que solo los usuarios autenticados puedan realizar ciertas acciones.
+npm: https://www.npmjs.com/
 
-## Tecnologías utilizadas
+MySQL o SQLite: https://www.mysql.com/ 
+/ https://www.sqlite.org/
 
-Este proyecto está construido con las siguientes tecnologías:
+Git: https://git-scm.com/
 
-- **Node.js**: Plataforma para ejecutar JavaScript en el servidor.
-- **Express.js**: Framework para crear la API.
-- **Sequelize**: Herramienta para conectar la API con la base de datos SQLite.
-- **SQLite**: Base de datos para almacenar las direcciones.
-- **JWT**: Para autenticar a los usuarios.
 
+- Instalación
+Clonar el repositorio:
+
+Bash
+`git clone https://github.com/tu-usuario/nombre-del-repositorio.git`
+
+
+- Instalar dependencias:
+Bash
+`cd nombre-del-repositorio`
+`npm install`
+
+
+- Configurar el entorno: Crea un archivo .env en la raíz del proyecto y configura las variables de entorno:
+JWT_SECRET=tu-secreto-jwt
+DB_HOST=localhost
+DB_USER=usuario
+DB_PASSWORD=contraseña
+DB_NAME=nombre_de_base_de_datos
+
+
+- Iniciar el servidor:
+Bash
+`npm start`
+
+El servidor estará disponible en http://localhost:3000.
+
+
+- Funcionalidades
+
+Autenticación JWT: Los usuarios deben autenticarse para acceder a sus direcciones.
+
+Gestión de direcciones: Agregar, editar y eliminar direcciones.
+
+Endpoints
+
+- Iniciar sesión:
+Método: POST
+Ruta: /auth/login
+Cuerpo:
+JSON
+
+{
+  "email": "usuario@ejemplo.com",
+  "password": "contraseña"
+}
+
+- Obtener direcciones:
+Método: GET
+Ruta: /addresses
+
+- Obtener dirección por ID:
+Método: GET
+Ruta: /addresses/:id
+
+- Actualizar dirección:
+Método: PUT
+Ruta: /addresses/:id
+Cuerpo:
+JSON
+
+{
+  "firstName": "Juan",
+  "lastName": "Pérez",
+  "address": "Nueva Dirección"
+}
+
+- Eliminar dirección:
+Método: DELETE
+Ruta: /addresses/:id
+
+- Contribuciones
+Si deseas contribuir, crea un fork del repositorio, crea una nueva rama y envía un pull request.
