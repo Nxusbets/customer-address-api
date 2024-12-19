@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion'; // Importamos Framer Motion
 
 const AddressesPage = () => {
   const [addresses, setAddresses] = useState([]);
@@ -101,54 +102,93 @@ const AddressesPage = () => {
   };
 
   return (
-    <div>
-      <h2>Direcciones</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={newAddress.firstName}
-          onChange={(e) => setNewAddress({ ...newAddress, firstName: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Apellido"
-          value={newAddress.lastName}
-          onChange={(e) => setNewAddress({ ...newAddress, lastName: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Segundo nombre"
-          value={newAddress.middleName}
-          onChange={(e) => setNewAddress({ ...newAddress, middleName: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Dirección"
-          value={newAddress.address}
-          onChange={(e) => setNewAddress({ ...newAddress, address: e.target.value })}
-        />
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={newAddress.email}
-          onChange={(e) => setNewAddress({ ...newAddress, email: e.target.value })}
-        />
-        <button type="submit">Agregar dirección</button>
-      </form>
+    <div className="container mt-5">
+      <motion.div
+        className="row justify-content-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="col-md-8">
+          <h2 className="text-center text-danger mb-4">Direcciones</h2>
+          <form onSubmit={handleSubmit} className="mb-4">
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombre"
+                value={newAddress.firstName}
+                onChange={(e) => setNewAddress({ ...newAddress, firstName: e.target.value })}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Apellido"
+                value={newAddress.lastName}
+                onChange={(e) => setNewAddress({ ...newAddress, lastName: e.target.value })}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Segundo nombre"
+                value={newAddress.middleName}
+                onChange={(e) => setNewAddress({ ...newAddress, middleName: e.target.value })}
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Dirección"
+                value={newAddress.address}
+                onChange={(e) => setNewAddress({ ...newAddress, address: e.target.value })}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Correo electrónico"
+                value={newAddress.email}
+                onChange={(e) => setNewAddress({ ...newAddress, email: e.target.value })}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-danger w-100">Agregar dirección</button>
+          </form>
 
-      {error && <p>{error}</p>}
-      {successMessage && <p>{successMessage}</p>}
+          {error && <div className="alert alert-danger">{error}</div>}
+          {successMessage && <div className="alert alert-success">{successMessage}</div>}
 
-      <h3>Direcciones:</h3>
-      <ul>
-        {addresses.map((address) => (
-          <li key={address.id}>
-            {address.firstName} {address.lastName} - {address.address}
-            <button onClick={() => handleDelete(address.id)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
+          <h3 className="text-center text-danger mb-4">Tus Direcciones</h3>
+          <ul className="list-group">
+            {addresses.map((address) => (
+              <motion.li
+                key={address.id}
+                className="list-group-item d-flex justify-content-between align-items-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                {address.firstName} {address.lastName} - {address.address}
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(address.id)}
+                >
+                  Eliminar
+                </button>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </motion.div>
     </div>
   );
 };
