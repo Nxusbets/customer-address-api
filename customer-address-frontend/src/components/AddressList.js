@@ -6,11 +6,11 @@ const AddressList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Obtener las direcciones del usuario
+ 
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const token = localStorage.getItem('token'); // Suponiendo que guardas el token en el localStorage
+        const token = localStorage.getItem('token'); 
         const response = await axios.get('http://localhost:3000/addresses', {
           headers: {
             Authorization: `Bearer ${token}`,

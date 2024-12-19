@@ -6,6 +6,8 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import AddressesPage from './components/AddressesPage';
+import EditAddressPage from './components/EditAddressPage';
+import AddAddressPage from './components/AddAddressPage';
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/addresses" element={<AddressesPage />} />
           <Route path="/" element={<RedirectToLogin />} />
+          <Route path="/edit-address/:id" element={<EditAddressPage />} />
+          <Route path="/add-address" element={<AddAddressPage />} />
         </Routes>
       </Router>
     </AuthProvider>
@@ -28,13 +32,13 @@ const RedirectToLogin = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate('/login'); // Si no hay token, redirige a la página de login
+      navigate('/login'); 
     } else {
-      navigate('/addresses'); // Si hay token, redirige a la página de direcciones
+      navigate('/addresses'); 
     }
   }, [token, navigate]);
 
-  return null; // No se renderiza nada mientras se realiza la redirección
+  return null; 
 };
 
 export default App;

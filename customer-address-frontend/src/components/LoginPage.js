@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { motion } from 'framer-motion'; // Importamos Framer Motion
+import { motion } from 'framer-motion'; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  // Función para manejar el login
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -21,10 +21,10 @@ const LoginPage = () => {
         password,
       });
 
-      localStorage.setItem('token', response.data.token); // Guardamos el token en localStorage
+      localStorage.setItem('token', response.data.token); 
       setSuccessMessage('Inicio de sesión exitoso');
       setError('');
-      navigate('/addresses'); // Redirigimos a la página de direcciones después del login
+      navigate('/addresses'); 
     } catch (err) {
       setError('Correo electrónico o contraseña incorrectos');
       setSuccessMessage('');
